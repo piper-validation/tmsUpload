@@ -14,6 +14,7 @@ node() {
     stage('VALIDATION') {
         sh '''#!/bin/bash
               curl --header \
+                   -vvv \
                    --fail \
                    https://transport-service-app-backend.tshotfix.cfapps.eu10.hana.ondemand.com/nodes/1/transportRequests?status=in
            '''
