@@ -5,8 +5,6 @@ node() {
         setupCommonPipelineEnvironment script: this
     }
     stage('TMS_UPLOAD') {
-        echo "Hello TMS"
-        sh 'cp $JENKINS_HOME/dummy.mtar dummy.mtar'
         tmsUpload script: this,
                   mtaPath: 'dummy.mtar',
                   nodeName: '__piperIntegrationTest',
