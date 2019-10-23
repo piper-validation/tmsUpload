@@ -3,6 +3,7 @@
 node() {
     stage('INIT') {
         setupCommonPipelineEnvironment script: this
+        checkout scm
     }
     stage('TMS_UPLOAD') {
         tmsUpload script: this,
