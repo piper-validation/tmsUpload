@@ -1,4 +1,4 @@
-@Library('piper-library-os') _
+//@Library('piper-library-os') _  --> will be set by the testing framework
 
 node() {
     stage('INIT') {
