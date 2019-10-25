@@ -2,8 +2,8 @@
 
 node() {
     stage('INIT') {
-        setupCommonPipelineEnvironment script: this
         checkout scm
+        setupCommonPipelineEnvironment script: this
     }
     stage('TMS_UPLOAD') {
         tmsUpload script: this,
