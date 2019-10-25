@@ -2,8 +2,10 @@
 
 node() {
     stage('INIT') {
-        checkout scm
+        def scmInfo = checkout scm
         setupCommonPipelineEnvironment script: this
+        scmInfo.GIT_COMMIT
+        commonPipelineEnvironment.setGitCommitId(scmInfo.GIT_COMMIT)
     }
     stage('TMS_UPLOAD') {
         tmsUpload script: this,
