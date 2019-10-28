@@ -4,9 +4,10 @@ node() {
     stage('INIT') {
         echo "HALLO MARCUS"
         def scmInfo = checkout scm
-        setupCommonPipelineEnvironment script: this
-        sh "ls -la"
         echo "SCM_INFO: ${scmInfo}"
+        sh "git rev-parse HEAD"
+        sh "ls -la"
+        setupCommonPipelineEnvironment script: this
         echo "GIT_COMMIT: ${scmInfo.GIT_COMMIT}"
         commonPipelineEnvironment.setGitCommitId(scmInfo.GIT_COMMIT)
         echo "CPE-GIT_COMMIT-1: ${commonPipelineEnvironment.gitCommitId}"
