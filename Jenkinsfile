@@ -2,20 +2,14 @@
 
 node() {
     stage('INIT') {
-        echo "HALLO MARCUS"
         deleteDir()
         def scmInfo = checkout scm
-        echo "SCM_INFO: ${scmInfo}"
-        String sha = sh returnStdout: true,
-                     script: "git rev-parse HEAD"
-        sha = sha.trim()
+        String sha = sh(returnStdout: true, script: "git rev-parse HEAD").trim()
         setupCommonPipelineEnvironment script: this
         echo "GIT_COMMIT: ${sha}"
         commonPipelineEnvironment.setGitCommitId(sha)
-        echo "CPE-GIT_COMMIT-1: ${commonPipelineEnvironment.gitCommitId}"
     }
     stage('TMS_UPLOAD') {
-        echo "CPE-GIT_COMMIT-1: ${this.commonPipelineEnvironment.gitCommitId}"
         tmsUpload script: this,
                   mtaPath: 'dummy.mtar',
                   nodeName: '__piperIntegrationTest',
