@@ -6,7 +6,6 @@ node() {
         def scmInfo = checkout scm
         String sha = sh(returnStdout: true, script: "git rev-parse HEAD").trim()
         setupCommonPipelineEnvironment script: this
-        echo "GIT_COMMIT: ${sha}"
         commonPipelineEnvironment.setGitCommitId(sha)
     }
     stage('TMS_UPLOAD') {
