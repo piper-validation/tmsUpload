@@ -2,12 +2,16 @@
 
 node() {
     stage('INIT') {
+        echo "HALLO MARCUS"
         def scmInfo = checkout scm
         setupCommonPipelineEnvironment script: this
         scmInfo.GIT_COMMIT
+        echo "GIT_COMMIT: ${scmInfo.GIT_COMMIT}"
         commonPipelineEnvironment.setGitCommitId(scmInfo.GIT_COMMIT)
+        echo "CPE-GIT_COMMIT-1: ${commonPipelineEnvironment.gitCommitId}"
     }
     stage('TMS_UPLOAD') {
+        echo "CPE-GIT_COMMIT-1: ${this.commonPipelineEnvironment.gitCommitId}"
         tmsUpload script: this,
                   mtaPath: 'dummy.mtar',
                   nodeName: '__piperIntegrationTest',
