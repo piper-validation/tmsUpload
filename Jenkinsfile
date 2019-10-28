@@ -6,11 +6,11 @@ node() {
         deleteDir()
         def scmInfo = checkout scm
         echo "SCM_INFO: ${scmInfo}"
-        sh "git rev-parse HEAD"
-        sh "ls -la"
+        def sha = sh returnStdout: true,
+                     script: "git rev-parse HEAD"
         setupCommonPipelineEnvironment script: this
-        echo "GIT_COMMIT: ${scmInfo.GIT_COMMIT}"
-        commonPipelineEnvironment.setGitCommitId(scmInfo.GIT_COMMIT)
+        echo "GIT_COMMIT: ${sha}"
+        commonPipelineEnvironment.setGitCommitId(sha)
         echo "CPE-GIT_COMMIT-1: ${commonPipelineEnvironment.gitCommitId}"
     }
     stage('TMS_UPLOAD') {
