@@ -10,7 +10,7 @@ node() {
                      script: "git rev-parse HEAD"
         setupCommonPipelineEnvironment script: this
         echo "GIT_COMMIT: ${sha}"
-        commonPipelineEnvironment.setGitCommitId(12345')
+        commonPipelineEnvironment.setGitCommitId('12345')
         echo "CPE-GIT_COMMIT-1: ${commonPipelineEnvironment.gitCommitId}"
     }
     stage('TMS_UPLOAD') {
