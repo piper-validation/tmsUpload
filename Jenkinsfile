@@ -7,10 +7,8 @@ node() {
         def scmInfo = checkout scm
         echo "SCM_INFO: ${scmInfo}"
         String sha = sh returnStdout: true,
-                     script: "git rev-parse --short HEAD"
-        echo "SHA 1: '${sha}'"
+                     script: "git rev-parse HEAD"
         sha = sha.trim()
-        echo "SHA 2: '${sha}'"
         setupCommonPipelineEnvironment script: this
         echo "GIT_COMMIT: ${sha}"
         commonPipelineEnvironment.setGitCommitId(sha)
