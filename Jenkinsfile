@@ -6,8 +6,11 @@ node() {
         deleteDir()
         def scmInfo = checkout scm
         echo "SCM_INFO: ${scmInfo}"
-        def sha = sh returnStdout: true,
+        String sha = sh returnStdout: true,
                      script: "git rev-parse --short HEAD"
+        echo "SHA 1: '${sha}'"
+        sha = sha.trim()
+        echo "SHA 2: '${sha}'"
         setupCommonPipelineEnvironment script: this
         echo "GIT_COMMIT: ${sha}"
         commonPipelineEnvironment.setGitCommitId(sha)
