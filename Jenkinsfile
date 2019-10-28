@@ -3,6 +3,7 @@
 node() {
     stage('INIT') {
         echo "HALLO MARCUS"
+        deleteDir()
         def scmInfo = checkout scm
         echo "SCM_INFO: ${scmInfo}"
         sh "git rev-parse HEAD"
