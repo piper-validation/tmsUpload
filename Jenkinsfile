@@ -5,7 +5,7 @@ node() {
         echo "HALLO MARCUS"
         def scmInfo = checkout scm
         setupCommonPipelineEnvironment script: this
-        scmInfo.GIT_COMMIT
+        echo "SCM_INFO: ${scmInfo}"
         echo "GIT_COMMIT: ${scmInfo.GIT_COMMIT}"
         commonPipelineEnvironment.setGitCommitId(scmInfo.GIT_COMMIT)
         echo "CPE-GIT_COMMIT-1: ${commonPipelineEnvironment.gitCommitId}"
